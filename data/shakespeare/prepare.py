@@ -19,8 +19,8 @@ val_data = data[int(n*0.9):]
 
 # encode with Huggingface tokenizer
 tokenizer = GPT2TokenizerFast.from_pretrained('gpt2')
-train_ids = tokenizer(train_data)
-val_ids = tokenizer(val_data)
+train_ids = tokenizer.encode(train_data)
+val_ids = tokenizer.encode(val_data)
 print(f"train has {len(train_ids):,} tokens")
 print(f"val has {len(val_ids):,} tokens")
 
