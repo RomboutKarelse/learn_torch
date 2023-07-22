@@ -1,6 +1,7 @@
 # inspired by https://github.com/karpathy/nanoGPT
 import os
 import requests
+import numpy as np
 from transformers import GPT2TokenizerFast
 
 # download the tiny shakespeare dataset
@@ -18,8 +19,8 @@ val_data = data[int(n*0.9):]
 
 # encode with Huggingface tokenizer
 tokenizer = GPT2TokenizerFast.from_pretrained('gpt2')
-train_ids = tokenizer(train_data)
-val_ids = tokenizer(val_data)
+train_ids = tokenizer(train_data, padding=True, truncation=True, max_length=1024)
+val_ids = tokenizer(val_data, padding=True, truncation=True, max_length=1024)
 print(f"train has {len(train_ids):,} tokens")
 print(f"val has {len(val_ids):,} tokens")
 
